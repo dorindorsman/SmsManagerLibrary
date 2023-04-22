@@ -1,5 +1,6 @@
 package com.example.smsmanagerlibrary
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -21,99 +22,82 @@ fun SmsItemView(
 
     Column(
         modifier = Modifier
+            .border(width = 1.dp, color = MaterialTheme.colors.primary)
             .fillMaxWidth()
             .wrapContentHeight()
     ) {
 
-        NotificationTopDetails(smsModel = smsModel)
-
-        NotificationBottomDetails(smsModel = smsModel)
-
-    }
-}
-
-
-@Composable
-fun NotificationTopDetails(smsModel: SmsModel) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth(),
-        verticalAlignment = Alignment.Top,
-    ) {
 
         smsModel.type?.let {
+            val text = if (it == "1") "Inbox" else if (it == "2") "OutBox" else ""
             Text(
-                text = it,
+                text = "Type: $text",
                 modifier = Modifier
                     .padding(start = 5.dp, top = 5.dp)
                     .wrapContentWidth(),
-                style = MaterialTheme.typography.body1.copy(color = Color.Gray, fontWeight = FontWeight.Bold),
+                style = MaterialTheme.typography.body1.copy(color = Color.Gray),
                 color = Color.Gray,
-                maxLines = 2
+                maxLines = 1
             )
         }
 
-        smsModel.threadId?.let {
+        smsModel.date?.let {
             Text(
-                text = it.toString(),
+                text = "Date: $it",
                 modifier = Modifier.padding(start = 5.dp, top = 5.dp),
                 style = MaterialTheme.typography.body1.copy(color = Color.Gray),
                 color = Color.Gray,
-                maxLines = 2
+                maxLines = 1,
             )
         }
-    }
-}
 
-@Composable
-fun NotificationBottomDetails(smsModel: SmsModel) {
-
-    Row(
-        verticalAlignment = Alignment.Top,
-        horizontalArrangement = Arrangement.Start
-    ) {
-
-
-        NotificationContent(smsModel = smsModel)
-
-    }
-}
-
-@Composable
-fun NotificationContent(smsModel: SmsModel) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth(0.8f)
-    ) {
         smsModel.address?.let {
             Text(
-                text = it,
-                style = MaterialTheme.typography.body1.copy(color = Color.Gray),
+                text = "Phone: $it",
+                modifier = Modifier.padding(start = 5.dp, top = 5.dp),
+                style = MaterialTheme.typography.body1.copy(color = Color.Gray, fontWeight = FontWeight.Bold),
                 color = Color.Gray,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis
             )
         }
 
         smsModel.body?.let {
             Text(
-                text = it,
-                style = MaterialTheme.typography.body1.copy(color = Color.Gray),
+                text = "MSG: $it",
+                modifier = Modifier.padding(start = 5.dp, top = 5.dp),
+                style = MaterialTheme.typography.body1.copy(color = Color.Gray, fontWeight = FontWeight.Bold),
                 color = Color.Gray,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
         }
 
-        smsModel.id?.let {
-            Text(
-                text = it.toString(),
-                style = MaterialTheme.typography.body1.copy(color = Color.Gray, fontSize = 9.sp),
-                color = Color.Gray,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
+        Row(
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            smsModel.threadId?.let {
+                Text(
+                    text = "ThreadId: $it",
+                    modifier = Modifier.padding(start = 5.dp, top = 5.dp),
+                    style = MaterialTheme.typography.body1.copy(color = Color.Gray, fontSize = 12.sp),
+                    color = Color.Gray,
+                    maxLines = 1
+                )
+            }
+
+            smsModel.id?.let {
+                Text(
+                    text = "Id: $it",
+                    modifier = Modifier.padding(start = 5.dp, top = 5.dp),
+                    style = MaterialTheme.typography.body1.copy(color = Color.Gray, fontSize = 12.sp),
+                    color = Color.Gray,
+                    maxLines = 1,
+                )
+            }
         }
+
+
     }
 }
 
