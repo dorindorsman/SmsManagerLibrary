@@ -1,4 +1,4 @@
-package com.example.smsmanagerlibrary
+package com.example.sms_library
 
 import android.content.Context
 import android.database.ContentObserver
@@ -25,7 +25,6 @@ class ReadSmsContentObserver(private val context: Context, handler: Handler) : C
     private val readConversationProvider: ReadSmsProvider = ReadSmsProvider(context)
     private val taskCheckForReadMessage = Runnable {
         val readConversations: Map<Int, SmsModel> = readConversationProvider.getReadChangedSmsMmsConversations()
-        Log.d("dorin", readConversations.toString())
         if (readConversations.isNotEmpty()) {
             Log.d(TAG, readConversations.toString())
             onReadSmsCallback?.onReadSmsEvent(readConversations)

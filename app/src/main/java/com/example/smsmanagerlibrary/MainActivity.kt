@@ -10,15 +10,13 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.smsmanagerlibrary.ui.theme.SmsManagerLibraryTheme
 import com.google.accompanist.permissions.*
-import androidx.lifecycle.viewmodel.compose.viewModel
-
+import com.example.sms_library.SmsViewModel
 
 
 class MainActivity : ComponentActivity() {
-
-    private var smsManager: SmsManager? = null
 
     private lateinit var smsViewModel: SmsViewModel
 
@@ -38,8 +36,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
 
-            val smsViewModelFactory = SmsViewModelFactory(applicationContext)
-            smsViewModel = viewModel(factory = smsViewModelFactory)
+            val smsViewModelFactory = com.example.sms_library.SmsViewModelFactory(applicationContext)
 
             SmsManagerLibraryTheme {
 
@@ -65,20 +62,11 @@ class MainActivity : ComponentActivity() {
                 )
 
                 if (permissionsState.allPermissionsGranted) {
-                        SmsScreen(smsViewModel)
+                    smsViewModel = viewModel(factory = smsViewModelFactory)
+                    SmsScreen(smsViewModel)
                 }
             }
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        smsManager?.start()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        smsManager?.stop()
     }
 
 }

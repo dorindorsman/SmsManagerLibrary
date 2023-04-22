@@ -1,4 +1,4 @@
-package com.example.smsmanagerlibrary
+package com.example.sms_library
 
 import android.content.Context
 import android.database.ContentObserver
@@ -25,7 +25,6 @@ class NewSmsContentObserver(private val context: Context, handler: Handler) : Co
     private val newSmsConversationProvider: NewSmsProvider = NewSmsProvider(context)
     private val taskCheckForNewMessage = Runnable {
         val newSmsConversations: Map<Int, SmsModel> = newSmsConversationProvider.getNewSmsMmsConversations()
-        Log.d("dorin", newSmsConversations.toString())
         if (newSmsConversations.isNotEmpty()){
             Log.d(TAG, newSmsConversations.toString())
             onNewSmsCallback?.onNewSmsEvent(newSmsConversations)
@@ -62,6 +61,10 @@ class NewSmsContentObserver(private val context: Context, handler: Handler) : Co
         }
         newSmsListenerThread = null
         newSmsHandler = null
+    }
+
+    fun setOnNewSmsCallback(newSmsCallback: NewSmsCallback) {
+        onNewSmsCallback = newSmsCallback
     }
 
 }

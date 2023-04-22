@@ -1,4 +1,4 @@
-package com.example.smsmanagerlibrary
+package com.example.sms_library
 
 import android.content.Context
 import android.os.Handler
@@ -23,7 +23,6 @@ class SmsManager(private val context: Context) {
         object : DeleteSmsContentObserver.DeleteSmsCallback {
             override fun onDeleteSmsEvent(conversations: Map<Int, SmsModel>) {
                 Log.d(TAG, conversations.toString())
-                Log.d("dorin", conversations.toString())
                 deletedConversations = conversations.values.toMutableList()
                 onSmsListener?.onSmsReplace()
             }
@@ -34,7 +33,6 @@ class SmsManager(private val context: Context) {
         object : ReadSmsContentObserver.ReadSmsCallback {
             override fun onReadSmsEvent(conversations: Map<Int, SmsModel>) {
                 Log.d(TAG, conversations.toString())
-                Log.d("dorin", conversations.toString())
                 readConversations = conversations.values.toMutableList()
                 onSmsListener?.onSmsReplace()
             }
@@ -44,7 +42,6 @@ class SmsManager(private val context: Context) {
         object : NewSmsContentObserver.NewSmsCallback {
             override fun onNewSmsEvent(conversations: Map<Int, SmsModel>) {
                 Log.d(TAG, conversations.toString())
-                Log.d("dorin", conversations.toString())
                 newSmsConversations = conversations.values.toMutableList()
                 onSmsListener?.onSmsReplace()
             }
@@ -66,18 +63,19 @@ class SmsManager(private val context: Context) {
         readSmsContentObserver?.start()
 
         newSmsContentObserver = NewSmsContentObserver(context = context, handler = Handler(Looper.getMainLooper()))
+        newSmsContentObserver?.setOnNewSmsCallback(newSmsCallback)
         newSmsContentObserver?.start()
     }
 
     fun stop() {
-        deleteSmsContentObserver?.stop()
-        deleteSmsContentObserver = null
-
-        readSmsContentObserver?.stop()
-        readSmsContentObserver = null
-
-        newSmsContentObserver?.stop()
-        newSmsContentObserver = null
+//        deleteSmsContentObserver?.stop()
+//        deleteSmsContentObserver = null
+//
+//        readSmsContentObserver?.stop()
+//        readSmsContentObserver = null
+//
+//        newSmsContentObserver?.stop()
+//        newSmsContentObserver = null
     }
 
 //    fun onDeleteSmsEvent(deletedConversations: Map<Int, SmsModel>) {

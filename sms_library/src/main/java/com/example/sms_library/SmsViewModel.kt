@@ -1,18 +1,17 @@
-package com.example.smsmanagerlibrary
+package com.example.sms_library
 
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.toMutableStateList
+import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 
 class SmsViewModel(private val smsManager: SmsManager) : ViewModel() {
 
-    var deletedConversations = mutableStateListOf<SmsModel>()
+    var deletedConversations by mutableStateOf(listOf<SmsModel>())
         private set
 
-    var readConversations = mutableStateListOf<SmsModel>()
+    var readConversations  by mutableStateOf(listOf<SmsModel>())
         private set
 
-    var newSmsConversations = mutableStateListOf<SmsModel>()
+    var newSmsConversations by mutableStateOf(listOf<SmsModel>())
         private set
 
     private var onSmsListener: OnSmsListener =
@@ -24,6 +23,7 @@ class SmsViewModel(private val smsManager: SmsManager) : ViewModel() {
 
     init {
         smsManager.setOnSmsListener(onSmsListener)
+        smsManager.start()
         getSms()
     }
 

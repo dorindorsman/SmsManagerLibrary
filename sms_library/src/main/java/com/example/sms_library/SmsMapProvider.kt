@@ -1,4 +1,4 @@
-package com.example.smsmanagerlibrary
+package com.example.sms_library
 
 import android.content.Context
 import android.net.Uri
@@ -29,11 +29,11 @@ object SmsMapProvider{
                             threadId = key,
                             count = cursor.getInt(cursor.getColumnIndexOrThrow( cursor.columnNames[1])),
                             id = cursor.getInt(cursor.getColumnIndexOrThrow(cursor.columnNames[2])),
-                            address = cursor.getString(cursor.getColumnIndexOrThrow(cursor.columnNames[3])),
-                            body = cursor.getString(cursor.getColumnIndexOrThrow(cursor.columnNames[4])),
+                            address = cursor.getString(cursor.getColumnIndexOrThrow(cursor.columnNames[3])) ?: "",
+                            body = cursor.getString(cursor.getColumnIndexOrThrow(cursor.columnNames[4])) ?: "",
                             date = formatted,
-                            type = cursor.getString(cursor.getColumnIndexOrThrow(cursor.columnNames[6])),
-                            readState = cursor.getString(cursor.getColumnIndexOrThrow(cursor.columnNames[7])),
+                            type = cursor.getString(cursor.getColumnIndexOrThrow(cursor.columnNames[6])) ?: "",
+                            readState = cursor.getString(cursor.getColumnIndexOrThrow(cursor.columnNames[7])) ?: ""
                         )
                        conversations[key] =  sms
                     } while (cursor.moveToNext())

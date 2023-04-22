@@ -1,4 +1,4 @@
-package com.example.smsmanagerlibrary
+package com.example.sms_library
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

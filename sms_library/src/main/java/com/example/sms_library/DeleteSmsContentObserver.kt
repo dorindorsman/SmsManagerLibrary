@@ -1,4 +1,4 @@
-package com.example.smsmanagerlibrary
+package com.example.sms_library
 
 import android.content.Context
 import android.database.ContentObserver
@@ -16,7 +16,7 @@ class DeleteSmsContentObserver(private val context: Context, handler: Handler) :
     }
 
     interface DeleteSmsCallback {
-        fun onDeleteSmsEvent(deletedConversations: Map<Int, SmsModel>)
+        fun onDeleteSmsEvent(deletedConversations: Map<Int, com.example.sms_library.SmsModel>)
     }
 
     private var onDeleteSmsCallback: DeleteSmsCallback? = null
@@ -25,8 +25,7 @@ class DeleteSmsContentObserver(private val context: Context, handler: Handler) :
 
     private val deletedConversationProvider: DeletedSmsProvider = DeletedSmsProvider(context)
     private val taskCheckForDeleteMessage = Runnable {
-        val deletedConversations: Map<Int, SmsModel> = deletedConversationProvider.getDeletedConversations()
-            Log.d("dorin", deletedConversations.toString())
+        val deletedConversations: Map<Int, com.example.sms_library.SmsModel> = deletedConversationProvider.getDeletedConversations()
         if (deletedConversations.isNotEmpty()) {
             Log.d(TAG, deletedConversations.toString())
             onDeleteSmsCallback?.onDeleteSmsEvent(deletedConversations)
@@ -65,7 +64,7 @@ class DeleteSmsContentObserver(private val context: Context, handler: Handler) :
         deleteSmsHandler = null
     }
 
-    fun setOnDeleteSmsCallBack(deleteSmsCallback: DeleteSmsContentObserver.DeleteSmsCallback) {
+    fun setOnDeleteSmsCallBack(deleteSmsCallback: DeleteSmsCallback) {
         onDeleteSmsCallback = deleteSmsCallback
     }
 }

@@ -1,4 +1,4 @@
-package com.example.smsmanagerlibrary.utils
+package com.example.sms_library.utils
 
 import android.database.Cursor
 import androidx.core.database.getBlobOrNull

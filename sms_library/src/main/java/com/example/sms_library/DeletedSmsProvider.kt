@@ -1,4 +1,4 @@
-package com.example.smsmanagerlibrary
+package com.example.sms_library
 
 import android.content.Context
 import android.provider.Telephony
@@ -6,9 +6,9 @@ import kotlin.collections.Map
 
 class DeletedSmsProvider(private val context: Context) {
 
-    private var smsConversations = emptyMap<Int, SmsModel>()
-    private var mmsConversations = emptyMap<Int, SmsModel>()
-    private var smsMapProvider: SmsMapProvider = SmsMapProvider
+    private var smsConversations = emptyMap<Int, com.example.sms_library.SmsModel>()
+    private var mmsConversations = emptyMap<Int, com.example.sms_library.SmsModel>()
+    private var smsMapProvider: com.example.sms_library.SmsMapProvider = com.example.sms_library.SmsMapProvider
 
 
     init {
@@ -30,11 +30,11 @@ class DeletedSmsProvider(private val context: Context) {
             )
     }
 
-    fun getDeletedConversations(): Map<Int, SmsModel> {
+    fun getDeletedConversations(): Map<Int, com.example.sms_library.SmsModel> {
         return getDeleteSmsConversations() + getDeleteMmsConversations()
     }
 
-    private fun getDeleteSmsConversations(): Map<Int, SmsModel> {
+    private fun getDeleteSmsConversations(): Map<Int, com.example.sms_library.SmsModel> {
         //allSmsConversations : < thread id, SmsModel >
         val currentSmsConversation = smsMapProvider
             .provide(
@@ -52,7 +52,7 @@ class DeletedSmsProvider(private val context: Context) {
         return deletedSmsConversations
     }
 
-    private fun getDeleteMmsConversations(): Map<Int, SmsModel> {
+    private fun getDeleteMmsConversations(): Map<Int, com.example.sms_library.SmsModel> {
         //allMmsConversations : < thread id, SmsModel >
         val currentMmsConversation = smsMapProvider
             .provide(
