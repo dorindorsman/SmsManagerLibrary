@@ -11,6 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.sms_library.SmsViewModel
 import com.example.smsmanagerlibrary.ui.theme.SmsManagerLibraryTheme
 import com.google.accompanist.permissions.*
 
