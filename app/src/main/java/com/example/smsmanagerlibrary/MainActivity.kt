@@ -13,7 +13,6 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.smsmanagerlibrary.ui.theme.SmsManagerLibraryTheme
 import com.google.accompanist.permissions.*
-import com.example.sms_library.SmsViewModel
 
 
 class MainActivity : ComponentActivity() {

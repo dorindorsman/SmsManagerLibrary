@@ -58,7 +58,7 @@ afterEvaluate {
                 from components.release
 
                 groupId = 'com.github.dorindorsman'
-                artifactId = 'sms-library-compose'
+                artifactId = 'sms_library'
                 version = '1.0'
             }
         }
