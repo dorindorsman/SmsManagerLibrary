@@ -3,7 +3,7 @@
 <p align="left">
   <a href="https://jitpack.io/#dorindorsman/SmsManagerLibrary/1.0.5"><img alt="License" src="https://badgen.net/badge/Jitpack/1.0.5/orange?icon=github"/></a>
   <a href="https://github.com/dorindorsman"><img alt="Profile" src="https://badgen.net/badge/Github/dorindorsman/green?icon=github"/></a>
-</p><br>
+</p>
 
 ## Directory for managing new/read/unread/deleted Sms messages.
 
