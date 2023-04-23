@@ -48,7 +48,7 @@ dependencyResolutionManagement {
 }
 ```
 ## Usage
-There are numbers of permission you need to add to your manifest 
+There are numbers of permissions you need to add to your manifest 
 
 ```kotlin
 <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
@@ -60,6 +60,8 @@ There are numbers of permission you need to add to your manifest
 <uses-permission android:name="android.permission.RECEIVE_MMS"/>
 <uses-permission android:name="android.permission.READ_CONTACTS"/>
 ```
+
+Ask permissions
 
 ```kotlin
 val permissionsState = rememberMultiplePermissionsState(
