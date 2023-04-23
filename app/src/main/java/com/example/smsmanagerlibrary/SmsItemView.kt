@@ -19,7 +19,6 @@ import com.example.sms_library.SmsModel
 fun SmsItemView(
     smsModel: SmsModel,
 ) {
-
     Column(
         modifier = Modifier
             .border(width = 1.dp, color = MaterialTheme.colors.primary)
