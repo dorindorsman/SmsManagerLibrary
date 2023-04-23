@@ -49,7 +49,6 @@ dependencyResolutionManagement {
 ```
 ## Usage
 There are numbers of permission you need to add to your manifest 
-There are two required parameters: `value` and `onValueChange`.
 
 ```kotlin
 <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
